@@ -1,24 +1,49 @@
 const colors = Array.from(document.querySelectorAll(".color"));
 const clock = document.getElementById("clock");
-const directions = ["left", "right", "top", "bottom"];
+const directions = [
+  "left",
+  "right",
+  "top",
+  "bottom",
+  "top-left",
+  "top-right",
+  "bottom-left",
+  "bottom-right",
+];
 let activeIndex = -1;
+
+const directionToTransform = {
+  left: "translate3d(-100%, 0, 0)",
+  right: "translate3d(100%, 0, 0)",
+  top: "translate3d(0, -100%, 0)",
+  bottom: "translate3d(0, 100%, 0)",
+  "top-left": "translate3d(-100%, -100%, 0)",
+  "top-right": "translate3d(100%, -100%, 0)",
+  "bottom-left": "translate3d(-100%, 100%, 0)",
+  "bottom-right": "translate3d(100%, 100%, 0)",
+};
+
+const oppositeDirection = {
+  left: "right",
+  right: "left",
+  top: "bottom",
+  bottom: "top",
+  "top-left": "bottom-right",
+  "top-right": "bottom-left",
+  "bottom-left": "top-right",
+  "bottom-right": "top-left",
+};
 
 function randomDirection() {
   return directions[Math.floor(Math.random() * directions.length)];
 }
 
 function translateFor(direction) {
-  if (direction === "left") return "translate3d(-100%, 0, 0)";
-  if (direction === "right") return "translate3d(100%, 0, 0)";
-  if (direction === "top") return "translate3d(0, -100%, 0)";
-  return "translate3d(0, 100%, 0)";
+  return directionToTransform[direction] || directionToTransform.right;
 }
 
 function opposite(direction) {
-  if (direction === "left") return "right";
-  if (direction === "right") return "left";
-  if (direction === "top") return "bottom";
-  return "top";
+  return oppositeDirection[direction] || "left";
 }
 
 function randomColor() {
