@@ -2,5 +2,5 @@
 
 https://tanjo.github.io/color-clock/
 
-A simple clock that changes color based on the time of day. The background color changes gradually from morning to night, providing a visual representation of the time.
+A simple clock that displays the current time over a full-screen color animation. The background changes every second with randomly generated colors that slide in from different directions.
 
